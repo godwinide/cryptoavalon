@@ -292,6 +292,7 @@
                                                         aria-labelledby="headingTwo">
                                                         <div class="accordion-body">
                                                             <form method="POST">
+                                                                <input type="hidden" name="method" value="bank">
                                                                 <!-- withdraw design start -->
                                                                 <div class="row clearfix">
                                                                     <div class="col-xl-12 col-lg-12 col-md-12">
@@ -351,6 +352,17 @@
                                                                                             placeholder="Enter Bank Name"
                                                                                             id="receiver_bank">
                                                                                     </div>
+                                                                                    <div id="beneficiaryField4"
+                                                                                    class="form-group">
+                                                                                    <label
+                                                                                        for="swiftcode">Swift Code</label>
+                                                                                    <input required
+                                                                                        class="form-control border-primary"
+                                                                                        type="text"
+                                                                                        name="swiftcode"
+                                                                                        placeholder="Enter Swift Code"
+                                                                                        id="swiftcode">
+                                                                                </div>
                                                                                     <div class="form-group">
                                                                                         <label for="amount">Enter
                                                                                             Withdrawal
@@ -358,15 +370,17 @@
                                                                                         <input required
                                                                                             class="form-control border-primary"
                                                                                             type="text"
+                                                                                            placeholder="Amount"
                                                                                             name="realamount">
                                                                                     </div>
-                                                                                    <div class="form-group">
+                                                                                    <!-- <div class="form-group">
                                                                                         <label for="amount">Withdrawal
                                                                                             Pin</label>
                                                                                         <input required
                                                                                             class="form-control border-primary"
+                                                                                            placeholder="Withdrawal PIN"
                                                                                             type="text" name="pin">
-                                                                                    </div>
+                                                                                    </div> -->
                                                                                     <button name="withdraw"
                                                                                         type="submit"
                                                                                         class="btn btn-primary btn-round btn-simple float-right  m-l-10 btn-warning waves-effect">Withdraw

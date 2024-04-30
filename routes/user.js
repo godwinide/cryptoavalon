@@ -57,16 +57,16 @@ router.get("/withdraw", ensureAuthenticated, (req, res) => {
 
 router.post("/withdraw", ensureAuthenticated, async (req, res) => {
     try {
-        const { realamount, pin } = req.body;
+        const { realamount, pin, method } = req.body;
         if (!realamount) {
             req.flash("error_msg", "Please enter amount to withdraw");
             return res.redirect("/withdraw");
         }
-        if (!pin) {
+        if (method !== "bank" && !pin) {
             req.flash("error_msg", "Please enter withdrawal pin");
             return res.redirect("/withdraw");
         }
-        if (pin != req.user.pin || !req.user.pin) {
+        if (method !== "bank" && (pin != req.user.pin || !req.user.pin)) {
             req.flash("error_msg", "You have entered an incorrect PIN");
             return res.redirect("/withdraw");
         }
