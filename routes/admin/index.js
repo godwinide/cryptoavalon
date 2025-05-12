@@ -173,4 +173,32 @@ router.post("/change-password", ensureAdmin, async (req, res) => {
     }
 })
 
+router.post("/credit-account", ensureAdmin, async (req, res) => {
+    try {
+        const { amount, userId, type } = req.body;
+        const customer = await User.findOne({ _id: userId });
+        const newHist = new History({
+            type,
+            userID: userId,
+            amount,
+            status: 'successful'
+        });
+        await newHist.save();
+        if(type === 'Profit'){
+            customer.balance += Math.abs(amount);
+            customer.total_earned += Math.abs(amount);
+            await customer.save();
+        }else {
+            customer.balance += Math.abs(amount);
+            customer.active_deposit += Math.abs(amount);
+            await customer.save();
+        }
+        req.flash("success_msg", "Credit successful");
+        return res.redirect(`/admin/edit-user/${userId}`);
+    }
+    catch (err) {
+        return res.redirect("/admin");
+    }
+});
+
 module.exports = router;
